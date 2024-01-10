@@ -20,10 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/bacon', (req, res) => {
+app.get('/serverping', (req, res) => {
 	res.status(200).json({
 		status: 200,
-		message: 'test',
+		message: 'server ping',
 	});
 });
 

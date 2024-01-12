@@ -5,11 +5,6 @@ const Welcome = () => {
 		<Wrapper>
 			<Container>
 				<Title>PC Repairs</Title>
-				<ButtonContainer>
-					<Button>Learn More</Button>
-					<Button>Get Estimate</Button>
-					<Button>Leave Review</Button>
-				</ButtonContainer>
 			</Container>
 		</Wrapper>
 	);
@@ -20,16 +15,7 @@ const Title = styled.p`
 	margin: 0;
 	font-family: Poppins;
 `;
-const Button = styled.button`
-	border: none;
-	background-color: inherit;
-`;
-const ButtonContainer = styled.div`
-	display: flex;
-	width: 40%;
-	min-width: 30rem;
-	justify-content: space-around;
-`;
+
 const Container = styled.div`
 	width: 20%;
 	min-width: 30rem;

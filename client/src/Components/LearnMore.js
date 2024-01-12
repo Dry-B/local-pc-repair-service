@@ -2,13 +2,14 @@ import { styled } from 'styled-components';
 
 const LearnMore = () => {
 	return (
-		<Wrapper>
+		<Wrapper id="learnmore">
 			<Container>
 				Learn more about our services here.
 			</Container>
 		</Wrapper>
 	);
 };
+
 
 const Container = styled.div``;
 const Wrapper = styled.div`

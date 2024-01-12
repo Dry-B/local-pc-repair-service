@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 const LeaveReview = () => {
 	return (
-		<Wrapper>
+		<Wrapper id="leavereview">
 			<div>Leave a Review Here</div>
 		</Wrapper>
 	);

@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 const GetEstimate = () => {
 	return (
-		<Wrapper>
+		<Wrapper id="getestimate">
 			<div>Form to submit here.</div>
 		</Wrapper>
 	);

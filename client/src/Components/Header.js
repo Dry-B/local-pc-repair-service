@@ -24,6 +24,7 @@ const ButtonContainer = styled.div`
 	position: sticky;
 	z-index: 999;
 	display: flex;
+	height: 1rem;
 	width: 40%;
 	min-width: 30rem;
 	justify-content: space-around;
@@ -33,12 +34,14 @@ const Button = styled.button`
 	background-color: inherit;
 `;
 const Wrapper = styled.div`
+	top: 50vh;
+	position: absolute;
 	margin-top: 1rem;
 	display: flex;
 	width: 40%;
 	min-width: 30rem;
+	height: 100%;
 	justify-content: space-around;
-	align-items: center;
 `;
 
 export { Header };

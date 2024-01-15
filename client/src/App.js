@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
-import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
-} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { Welcome } from './Components/Welcome';
 import { LearnMore } from './Components/LearnMore';
@@ -22,8 +18,8 @@ const App = () => {
 	return (
 		<GlobalStyles>
 			<Router>
-				<Header />
 				<Welcome />
+				<Header />
 				<LearnMore />
 				<GetEstimate />
 				<LeaveReview />
@@ -38,6 +34,7 @@ const GlobalStyles = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 `;
 
 export default App;

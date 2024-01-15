@@ -20,15 +20,16 @@ const Container = styled.div`
 	width: 20%;
 	min-width: 30rem;
 	text-align: center;
-	padding-bottom: 8%;
 	display: flex;
 	flex-direction: column;
 `;
 const Wrapper = styled.div`
 	width: 100%;
-	height: 100vh;
+	height: 50vh;
+	padding-bottom: 50vh;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: end;
 	align-items: center;
 `;
 

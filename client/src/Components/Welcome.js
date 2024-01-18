@@ -49,7 +49,6 @@ const Title = styled.p`
 	font-family: Poppins;
 	color: #ebebeb;
 `;
-
 const Container = styled.div`
 	width: 20%;
 	min-width: 30rem;

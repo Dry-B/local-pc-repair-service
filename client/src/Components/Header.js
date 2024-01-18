@@ -4,36 +4,44 @@ import { HashLink } from 'react-router-hash-link';
 const Header = () => {
 	return (
 		<Wrapper>
-			<ButtonContainer>
-				<HashLink smooth to="/#getestimate">
-					<EstimateButton style={buttonStyles}>
-						Get Estimate
-					</EstimateButton>
-				</HashLink>
-				<HashLink smooth to="/#learnmore">
-					<Button style={buttonStyles}>
-						Learn More
-					</Button>
-				</HashLink>
-				<HashLink smooth to="/#leavereview">
-					<Button style={buttonStyles}>
-						Leave Review
-					</Button>
-				</HashLink>
-			</ButtonContainer>
+			<Container>
+				<ButtonContainer>
+					<HashLink smooth to="/#getestimate">
+						<EstimateButton style={buttonStyles}>
+							Get Estimate
+						</EstimateButton>
+					</HashLink>
+					<HashLink smooth to="/#learnmore">
+						<Button style={buttonStyles}>
+							Learn More
+						</Button>
+					</HashLink>
+					<HashLink smooth to="/#leavereview">
+						<Button style={buttonStyles}>
+							Leave Review
+						</Button>
+					</HashLink>
+				</ButtonContainer>
+			</Container>
 		</Wrapper>
 	);
 };
 
+const Container = styled.div`
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	margin-top: 50vh;
+`;
 const ButtonContainer = styled.div`
 	top: 0;
 	position: sticky;
 	z-index: 999;
 	display: flex;
 	height: 1rem;
-	width: 45%;
-	min-width: 30rem;
+	width: 40rem;
 	justify-content: space-around;
+	margin-top: 1rem;
 `;
 const EstimateButton = styled.button`
 	background-color: #ff4c4c;
@@ -53,12 +61,11 @@ const buttonStyles = {
 	color: '#ebebeb',
 };
 const Wrapper = styled.div`
-	top: 50vh;
 	position: absolute;
-	margin-top: 1rem;
-	display: flex;
 	height: 100%;
-	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
 `;
 
 

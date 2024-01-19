@@ -5,13 +5,16 @@ const Welcome = () => {
 	const [photo, setPhoto] = useState(null);
 
 	useEffect(() => {
-		fetch('/api/getUnsplashPhoto')
+		fetch(
+			`/api/getUnsplashPhoto/person-holding-black-and-silver-dj-controller-sMKUYIasyDM`
+		)
 			.then((res) => res.json())
 			.then((data) => setPhoto(data))
 			.catch((err) =>
 				console.error('Error fetching photos:', err)
 			);
 	}, []);
+
 	return (
 		<Wrapper>
 			<BackgroundImageContainer>

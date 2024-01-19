@@ -26,7 +26,7 @@ express()
 	.use(cors())
 
 	.get('/serverping', serverPing)
-	.get('/api/getUnsplashPhoto', getUnsplashPhoto)
+	.get('/api/getUnsplashPhoto/:id', getUnsplashPhoto)
 
 	.listen(port, () => {
 		console.log(`Listening on port ${port}`);

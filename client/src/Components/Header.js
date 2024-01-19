@@ -6,15 +6,15 @@ const Header = () => {
 		<Wrapper>
 			<Container>
 				<ButtonContainer>
-					<HashLink smooth to="/#getestimate">
-						<EstimateButton style={buttonStyles}>
-							Get Estimate
-						</EstimateButton>
-					</HashLink>
 					<HashLink smooth to="/#learnmore">
 						<Button style={buttonStyles}>
 							Learn More
 						</Button>
+					</HashLink>
+					<HashLink smooth to="/#getestimate">
+						<EstimateButton style={buttonStyles}>
+							Get Estimate
+						</EstimateButton>
 					</HashLink>
 					<HashLink smooth to="/#leavereview">
 						<Button style={buttonStyles}>

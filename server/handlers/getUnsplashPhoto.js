@@ -6,7 +6,7 @@ const ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 const getUnsplashPhoto = async (req, res) => {
 	try {
 		const response = await fetch(
-			`${UNSPLASH_API_URL}/photos/person-holding-black-and-silver-dj-controller-sMKUYIasyDM?client_id=${ACCESS_KEY}`
+			`${UNSPLASH_API_URL}/photos/${req.params.id}?client_id=${ACCESS_KEY}`
 		);
 		if (!response.ok) {
 			throw new Error('Network response was not ok');

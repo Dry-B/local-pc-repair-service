@@ -1,9 +1,18 @@
 const serverPing = async (req, res) => {
-	console.log('server pinged');
-	res.status(200).json({
-		status: 200,
-		message: 'server successfully pinged',
-	});
+
+	try {
+		console.log('server pinged');
+		res.status(200).json({
+			status: 200,
+			message: 'server successfully reached',
+		});
+	} catch (err) {
+		console.error('Error:', error);
+		res.status(500).json({
+			status: 500,
+			message: 'server could not be reached',
+		});
+	}
 };
 
 module.exports = serverPing;

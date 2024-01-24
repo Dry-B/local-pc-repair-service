@@ -1,6 +1,21 @@
 import { styled } from 'styled-components';
+import { useEffect } from 'react';
 
 const LeaveReview = () => {
+	useEffect(() => {
+		const leaveReview = async () => {
+			await fetch('/api/createReview', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					Name: 'Brendan',
+					Message: 'First!',
+				}),
+			});
+		};
+		leaveReview();
+	}, []);
+
 	return (
 		<Wrapper id="leavereview">
 			<Container>

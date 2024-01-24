@@ -1,12 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
-
 
 const port = 4000;
 
 const serverPing = require('./handlers/serverPing');
 const getUnsplashPhoto = require('./handlers/getUnsplashPhoto');
+const createReview = require('./handlers/createReview');
 
 express()
 	.use(morgan('tiny'))
@@ -23,11 +22,18 @@ express()
 	})
 	.use(express.json())
 	.use(express.urlencoded({ extended: false }))
-	.use(cors())
 
 	.get('/serverping', serverPing)
 	.get('/api/getUnsplashPhoto/:id', getUnsplashPhoto)
+	.post('/api/createReview', createReview)
 
+	.get('*', (req, res) => {
+		res.status(66).json({
+			status: 66,
+			message:
+				'This is obviously not what you are looking for.',
+		});
+	})
 	.listen(port, () => {
 		console.log(`Listening on port ${port}`);
 	});

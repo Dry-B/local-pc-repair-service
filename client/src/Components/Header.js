@@ -32,6 +32,7 @@ const Container = styled.div`
 	justify-content: center;
 	height: 100%;
 	margin-top: 50vh;
+	z-index: -1;
 `;
 const ButtonContainer = styled.div`
 	top: 0;
@@ -66,6 +67,7 @@ const Wrapper = styled.div`
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: -1;
 `;
 
 

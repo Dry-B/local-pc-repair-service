@@ -1,32 +1,62 @@
 import { styled } from 'styled-components';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 const LeaveReview = () => {
-	useEffect(() => {
-		const leaveReview = async () => {
-			await fetch('/api/createReview', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					Name: 'Brendan',
-					Message: 'First!',
-				}),
-			});
-		};
-		leaveReview();
-	}, []);
+	const [formData, setFormData] = useState({
+		name: '',
+		message: '',
+		email: '',
+	});
+
+	const leaveReview = async (formData) => {
+		await fetch('/api/createReview', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				formData,
+			}),
+		});
+	};
+
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		leaveReview(formData);
+	};
 
 	return (
 		<Wrapper id="leavereview">
 			<Container>
-				<Form>
+				<Form onSubmit={handleSubmit}>
 					<h2>Leave A Review!</h2>
 					<label>Message:</label>
-					<textarea></textarea>
+					<textarea
+						type="text"
+						name="message"
+						value={formData.message}
+						onChange={handleChange}
+					></textarea>
 					<label>Name:</label>
-					<input></input>
+					<input
+						type="text"
+						name="name"
+						value={formData.name}
+						onChange={handleChange}
+					></input>
 					<label>Email:</label>
-					<input></input>
+					<input
+						type="email"
+						name="email"
+						value={formData.email}
+						onChange={handleChange}
+					></input>
+					<button type="submit">SUBMIT</button>
 				</Form>
 				<PreviousReviews>Other Reviews:</PreviousReviews>
 			</Container>

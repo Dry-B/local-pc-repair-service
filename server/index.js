@@ -6,6 +6,7 @@ const port = 4000;
 const serverPing = require('./handlers/serverPing');
 const getUnsplashPhoto = require('./handlers/getUnsplashPhoto');
 const createReview = require('./handlers/createReview');
+const getReviews = require('./handlers/getReviews');
 
 express()
 	.use(morgan('tiny'))
@@ -26,6 +27,7 @@ express()
 	.get('/serverping', serverPing)
 	.get('/api/getUnsplashPhoto/:id', getUnsplashPhoto)
 	.post('/api/createReview', createReview)
+	.get('/api/getReviews', getReviews)
 
 	.get('*', (req, res) => {
 		res.status(66).json({

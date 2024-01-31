@@ -5,8 +5,8 @@ const { MONGO_URI } = process.env;
 
 
 const createReview = async (req, res) => {
-	const client = new MongoClient(MONGO_URI);
 	try {
+		const client = new MongoClient(MONGO_URI);
 		await client.connect();
 		const db = client.db('PC_Repair');
 		const result = await db

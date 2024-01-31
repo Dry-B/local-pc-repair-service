@@ -15,7 +15,7 @@ const getUnsplashPhoto = async (req, res) => {
 		res.json(photos);
 	} catch (error) {
 		console.error('Error:', error);
-		res.status(500).json({ message: 'Server error' });
+		res.status(500).json({ message: err.message });
 	}
 };
 

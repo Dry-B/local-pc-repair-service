@@ -31,8 +31,7 @@ const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	height: 100%;
-	margin-top: 50vh;
-	z-index: -1;
+	margin: 50vh 0;
 `;
 const ButtonContainer = styled.div`
 	top: 0;
@@ -62,12 +61,10 @@ const buttonStyles = {
 	color: '#ebebeb',
 };
 const Wrapper = styled.div`
-	position: absolute;
-	height: 100%;
+	position: sticky;
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: -1;
 `;
 
 

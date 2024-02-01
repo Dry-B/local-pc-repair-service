@@ -69,6 +69,9 @@ const Wrapper = styled.div`
 	justify-content: end;
 	align-items: center;
 	margin: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
 `;
 
 export { Welcome };

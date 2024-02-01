@@ -24,4 +24,8 @@ export default createGlobalStyle`
   &::-webkit-scrollbar {
   display: none;
   }
+  #root {
+    position: absolute;
+    top:0
+  }
 `;

@@ -7,6 +7,7 @@ const serverPing = require('./handlers/serverPing');
 const getUnsplashPhoto = require('./handlers/getUnsplashPhoto');
 const createReview = require('./handlers/createReview');
 const getReviews = require('./handlers/getReviews');
+const reCaptcha = require('./handlers/reCaptcha');
 
 express()
 	.use(morgan('tiny'))
@@ -28,6 +29,7 @@ express()
 	.get('/api/getUnsplashPhoto/:id', getUnsplashPhoto)
 	.post('/api/createReview', createReview)
 	.get('/api/getReviews', getReviews)
+	.post('/api/reCaptcha', reCaptcha)
 
 	.get('*', (req, res) => {
 		res.status(404).json({

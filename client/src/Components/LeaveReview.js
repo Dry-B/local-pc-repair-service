@@ -17,7 +17,7 @@ const LeaveReview = () => {
 			.catch((err) =>
 				console.error('Error fetching reviews:', err)
 			);
-	});
+	}, []);
 
 	const leaveReview = async (formData) => {
 		await fetch('/api/createReview', {
@@ -91,6 +91,7 @@ const PreviousReviews = styled.div`
 	border: solid black 1px;
 	height: 40rem;
 	width: 30rem;
+	overflow: auto;
 `;
 const Form = styled.form`
 	display: flex;

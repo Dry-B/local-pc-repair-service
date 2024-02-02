@@ -12,10 +12,9 @@ const createReview = async (req, res) => {
 		const result = await db
 			.collection('reviews')
 			.insertOne(req.body);
-		res.status(201).json({ status: 201 });
+		res.status(200).json({ status: 200 });
 		await client.close();
 	} catch (err) {
-		console.error('Error:', error);
 		res.status(500).json({
 			status: 500,
 			data: req.body,

@@ -1,11 +1,22 @@
 import { styled } from 'styled-components';
-import { useState } from 'react';
+import { OtherReview } from './OtherReview';
+import { useState, useEffect } from 'react';
 
 const LeaveReview = () => {
+	const [reviewData, setReviewData] = useState(null);
 	const [formData, setFormData] = useState({
 		name: '',
 		message: '',
 		email: '',
+	});
+
+	useEffect(() => {
+		fetch(`/api/getReviews`)
+			.then((res) => res.json())
+			.then((data) => setReviewData(data))
+			.catch((err) =>
+				console.error('Error fetching reviews:', err)
+			);
 	});
 
 	const leaveReview = async (formData) => {
@@ -58,7 +69,19 @@ const LeaveReview = () => {
 					></input>
 					<button type="submit">SUBMIT</button>
 				</Form>
-				<PreviousReviews>Other Reviews:</PreviousReviews>
+				<PreviousReviews>
+					Other Reviews:
+					{!reviewData
+						? 'Loading...'
+						: reviewData.data.map((e) => {
+								return (
+									<OtherReview
+										key={e[0].name}
+										reviewData={e}
+									/>
+								);
+						  })}
+				</PreviousReviews>
 			</Container>
 		</Wrapper>
 	);

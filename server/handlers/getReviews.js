@@ -5,6 +5,20 @@ require('dotenv').config();
 const { MONGO_URI } = process.env;
 
 const getFlights = async (req, res) => {
+
+	const sanitizeData = (data) => {
+		const sanitizedInfo = [];
+		data.map((e) => {
+			sanitizedInfo.push([
+				{
+					Name: e.formData.name,
+					Message: e.formData.message,
+				},
+			]);
+		});
+		return sanitizedInfo;
+	};
+
 	try {
 		const client = new MongoClient(MONGO_URI);
 		await client.connect();
@@ -13,15 +27,17 @@ const getFlights = async (req, res) => {
 			.collection('reviews')
 			.find()
 			.toArray();
-		res.status(200).json({ status: 200, data: result });
-		client.close();
-	} catch (err) {}
-	console.error('Error:', error);
-	res.status(500).json({
-		status: 500,
-		data: result,
-		message: err.message,
-	});
+		await client.close();
+		res.status(200).json({
+			status: 200,
+			data: sanitizeData(result),
+		});
+	} catch (err) {
+		res.status(500).json({
+			status: 500,
+			message: 'error',
+		});
+	}
 };
 
 module.exports = getFlights;

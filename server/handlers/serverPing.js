@@ -7,7 +7,6 @@ const serverPing = async (req, res) => {
 			message: 'server successfully reached',
 		});
 	} catch (err) {
-		console.error('Error:', error);
 		res.status(500).json({
 			status: 500,
 			message: 'server could not be reached',

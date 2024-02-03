@@ -6,7 +6,7 @@ const LearnMore = () => {
 
 	useEffect(() => {
 		fetch(
-			`/api/getUnsplashPhoto/person-holding-black-and-silver-dj-controller-sMKUYIasyDM`
+			`/api/photo/macbook-pro-on-top-of-brown-table-1SAnrIxw5OY`
 		)
 			.then((res) => res.json())
 			.then((data) => setPhoto(data))

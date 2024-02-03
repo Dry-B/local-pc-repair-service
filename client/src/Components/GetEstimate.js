@@ -6,7 +6,7 @@ const GetEstimate = () => {
 
 	useEffect(() => {
 		fetch(
-			`/api/getUnsplashPhoto/person-holding-black-and-silver-dj-controller-sMKUYIasyDM`
+			`/api/photo/a-man-sitting-at-a-table-using-a-laptop-computer-RHbaDtQL6qU`
 		)
 			.then((res) => res.json())
 			.then((data) => setPhoto(data))

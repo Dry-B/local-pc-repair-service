@@ -6,7 +6,7 @@ const Welcome = () => {
 
 	useEffect(() => {
 		fetch(
-			`/api/getUnsplashPhoto/person-holding-black-and-silver-dj-controller-sMKUYIasyDM`
+			`/api/photo/person-holding-black-and-silver-dj-controller-sMKUYIasyDM`
 		)
 			.then((res) => res.json())
 			.then((data) => setPhoto(data))

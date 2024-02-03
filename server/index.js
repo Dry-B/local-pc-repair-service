@@ -26,10 +26,10 @@ express()
 	.use(express.urlencoded({ extended: false }))
 
 	.get('/serverping', serverPing)
-	.get('/api/getUnsplashPhoto/:id', getUnsplashPhoto)
-	.post('/api/createReview', createReview)
-	.get('/api/getReviews', getReviews)
-	.post('/api/reCaptcha', reCaptcha)
+	.get('/api/photo/:id', getUnsplashPhoto)
+	.post('/api/review', createReview)
+	.get('/api/reviews', getReviews)
+	.post('/api/recaptcha', reCaptcha)
 
 	.get('*', (req, res) => {
 		res.status(404).json({

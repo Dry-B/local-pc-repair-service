@@ -8,6 +8,7 @@ const getUnsplashPhoto = require('./handlers/getUnsplashPhoto');
 const createReview = require('./handlers/createReview');
 const getReviews = require('./handlers/getReviews');
 const reCaptcha = require('./handlers/reCaptcha');
+const updateReview = require('./handlers/updateReview');
 
 express()
 	.use(morgan('tiny'))
@@ -30,6 +31,7 @@ express()
 	.post('/api/review', createReview)
 	.get('/api/reviews', getReviews)
 	.post('/api/recaptcha', reCaptcha)
+	.post('/api/review/update', updateReview)
 
 	.get('*', (req, res) => {
 		res.status(404).json({

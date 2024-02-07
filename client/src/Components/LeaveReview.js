@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { OtherReview } from './OtherReview';
+import { UpdateReview } from './UpdateReview';
 import { useState, useEffect } from 'react';
 
 const LeaveReview = () => {
@@ -70,7 +71,7 @@ const LeaveReview = () => {
 					<button type="submit">SUBMIT</button>
 				</Form>
 				<PreviousReviews>
-					Other Reviews:
+					Reviews:
 					{!reviewData
 						? 'Loading...'
 						: reviewData.data.map((e) => {
@@ -82,36 +83,13 @@ const LeaveReview = () => {
 								);
 						  })}
 				</PreviousReviews>
-				<ButtonContainer>
-					<h2>Edit/Delete Your Review!</h2>
-					<label>Updated Message:</label>
-					<textarea
-						type="text"
-						name="message"
-						value={formData.message}
-						onChange={handleChange}
-					></textarea>
-					<label>Email Used:</label>
-					<input
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-					></input>
-					<button>UPDATE</button>
-					<button>DELETE</button>
-				</ButtonContainer>
+				<UpdateReview />
 			</Container>
 		</Wrapper>
 	);
 };
 
-const ButtonContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	width: 10rem;
-	margin: 2rem;
-`;
+
 const PreviousReviews = styled.div`
 	border: solid black 1px;
 	height: 40rem;

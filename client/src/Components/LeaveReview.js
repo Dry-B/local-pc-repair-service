@@ -72,16 +72,17 @@ const LeaveReview = () => {
 				</Form>
 				<PreviousReviews>
 					Reviews:
-					{!reviewData
-						? 'Loading...'
-						: reviewData.data.map((e) => {
-								return (
-									<OtherReview
-										key={e[0].name}
-										reviewData={e}
-									/>
-								);
-						  })}
+					<ul>
+						{!reviewData
+							? 'Loading...'
+							: reviewData.data.map((e) => {
+									return (
+										<OtherReview
+											reviewData={e}
+										/>
+									);
+							  })}
+					</ul>
 				</PreviousReviews>
 				<UpdateReview />
 			</Container>

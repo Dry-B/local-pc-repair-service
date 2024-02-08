@@ -2,8 +2,10 @@ import { styled } from 'styled-components';
 import { OtherReview } from './OtherReview';
 import { UpdateReview } from './UpdateReview';
 import { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const LeaveReview = () => {
+	const { isAuthenticated } = useAuth0();
 	const [reviewData, setReviewData] = useState(null);
 	const [formData, setFormData] = useState({
 		name: '',
@@ -45,31 +47,33 @@ const LeaveReview = () => {
 	return (
 		<Wrapper id="leavereview">
 			<Container>
-				<Form onSubmit={handleSubmit}>
-					<h2>Leave A Review!</h2>
-					<label>Message:</label>
-					<textarea
-						type="text"
-						name="message"
-						value={formData.message}
-						onChange={handleChange}
-					></textarea>
-					<label>Name:</label>
-					<input
-						type="text"
-						name="name"
-						value={formData.name}
-						onChange={handleChange}
-					></input>
-					<label>Email:</label>
-					<input
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-					></input>
-					<button type="submit">SUBMIT</button>
-				</Form>
+				{isAuthenticated && (
+					<Form onSubmit={handleSubmit}>
+						<h2>Leave A Review!</h2>
+						<label>Message:</label>
+						<textarea
+							type="text"
+							name="message"
+							value={formData.message}
+							onChange={handleChange}
+						></textarea>
+						<label>Name:</label>
+						<input
+							type="text"
+							name="name"
+							value={formData.name}
+							onChange={handleChange}
+						></input>
+						<label>Email:</label>
+						<input
+							type="email"
+							name="email"
+							value={formData.email}
+							onChange={handleChange}
+						></input>
+						<button type="submit">SUBMIT</button>
+					</Form>
+				)}
 				<PreviousReviews>
 					Reviews:
 					<ul>
@@ -84,7 +88,7 @@ const LeaveReview = () => {
 							  })}
 					</ul>
 				</PreviousReviews>
-				<UpdateReview />
+				{isAuthenticated && <UpdateReview />}
 			</Container>
 		</Wrapper>
 	);

@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { Welcome } from './Components/Welcome';
 import { LearnMore } from './Components/LearnMore';
 import { GetEstimate } from './Components/GetEstimate';
@@ -9,6 +10,7 @@ import GlobalStyles from './Components/GlobalStyles';
 import React from 'react';
 
 const App = () => {
+	const { isAuthenticated } = useAuth0();
 	return (
 		<Router>
 			<GlobalStyles />
@@ -16,7 +18,7 @@ const App = () => {
 			<Header />
 			<AuthButton />
 			<LearnMore />
-			<GetEstimate />
+			{isAuthenticated && <GetEstimate />}
 			<LeaveReview />
 		</Router>
 	);

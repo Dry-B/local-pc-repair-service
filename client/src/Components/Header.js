@@ -1,7 +1,9 @@
 import { styled } from 'styled-components';
 import { HashLink } from 'react-router-hash-link';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Header = () => {
+	const { loginWithRedirect, isAuthenticated } = useAuth0();
 	return (
 		<Wrapper>
 			<Container>
@@ -11,14 +13,27 @@ const Header = () => {
 							Learn More
 						</Button>
 					</HashLink>
-					<HashLink smooth to="/#getestimate">
-						<EstimateButton style={buttonStyles}>
-							Get Estimate
-						</EstimateButton>
-					</HashLink>
+					{isAuthenticated ? (
+						<HashLink smooth to="/#getestimate">
+							<EstimateButton style={buttonStyles}>
+								Get Estimate
+							</EstimateButton>
+						</HashLink>
+					) : (
+						<div>
+							<EstimateButton
+								onClick={() =>
+									loginWithRedirect()
+								}
+								style={buttonStyles}
+							>
+								Get Estimate
+							</EstimateButton>
+						</div>
+					)}
 					<HashLink smooth to="/#leavereview">
 						<Button style={buttonStyles}>
-							Leave Review
+							Reviews
 						</Button>
 					</HashLink>
 				</ButtonContainer>

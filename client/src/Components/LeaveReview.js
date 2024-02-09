@@ -1,17 +1,13 @@
 import { styled } from 'styled-components';
 import { OtherReview } from './OtherReview';
 import { UpdateReview } from './UpdateReview';
+import { ReviewForm } from './ReviewForm';
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const LeaveReview = () => {
-	const { isAuthenticated } = useAuth0();
+	const { user, isAuthenticated } = useAuth0();
 	const [reviewData, setReviewData] = useState(null);
-	const [formData, setFormData] = useState({
-		name: '',
-		message: '',
-		email: '',
-	});
 
 	useEffect(() => {
 		fetch(`/api/reviews`)
@@ -21,67 +17,24 @@ const LeaveReview = () => {
 				console.error('Error fetching reviews:', err)
 			);
 	}, []);
-
-	const leaveReview = async (formData) => {
-		await fetch('/api/createReview', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				formData,
-			}),
-		});
-	};
-
-	const handleChange = (e) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		leaveReview(formData);
-	};
-
+	console.log(user);
 	return (
 		<Wrapper id="leavereview">
 			<Container>
-				{isAuthenticated && (
-					<Form onSubmit={handleSubmit}>
-						<h2>Leave A Review!</h2>
-						<label>Message:</label>
-						<textarea
-							type="text"
-							name="message"
-							value={formData.message}
-							onChange={handleChange}
-						></textarea>
-						<label>Name:</label>
-						<input
-							type="text"
-							name="name"
-							value={formData.name}
-							onChange={handleChange}
-						></input>
-						<label>Email:</label>
-						<input
-							type="email"
-							name="email"
-							value={formData.email}
-							onChange={handleChange}
-						></input>
-						<button type="submit">SUBMIT</button>
-					</Form>
+				{isAuthenticated ? (
+					<ReviewForm user={user} />
+				) : (
+					<>Loading...</>
 				)}
 				<PreviousReviews>
 					Reviews:
 					<ul>
 						{!reviewData
 							? 'Loading...'
-							: reviewData.data.map((e) => {
+							: reviewData.data.map((e, index) => {
 									return (
 										<OtherReview
+											key={index}
 											reviewData={e}
 										/>
 									);
@@ -94,20 +47,13 @@ const LeaveReview = () => {
 	);
 };
 
-
 const PreviousReviews = styled.div`
 	border: solid black 1px;
 	height: 40rem;
 	width: 30rem;
 	overflow: auto;
 `;
-const Form = styled.form`
-	display: flex;
-	flex-direction: column;
-	width: 10rem;
-	justify-content: center;
-	margin: 2rem;
-`;
+
 const Container = styled.div`
 	display: flex;
 	justify-content: center;

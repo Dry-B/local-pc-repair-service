@@ -9,6 +9,8 @@ const createReview = require('./handlers/createReview');
 const getReviews = require('./handlers/getReviews');
 const reCaptcha = require('./handlers/reCaptcha');
 const updateReview = require('./handlers/updateReview');
+const createEstimate = require('./handlers/createEstimate');
+const getReview = require('./handlers/getReview');
 
 express()
 	.use(morgan('tiny'))
@@ -32,6 +34,8 @@ express()
 	.get('/api/reviews', getReviews)
 	.post('/api/recaptcha', reCaptcha)
 	.post('/api/review/update', updateReview)
+	.post('/api/estimate', createEstimate)
+	.get('api/review/:id', getReview)
 
 	.get('*', (req, res) => {
 		res.status(404).json({

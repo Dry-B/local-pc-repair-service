@@ -1,9 +1,14 @@
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const GetEstimate = () => {
+	const { user } = useAuth0();
 	const [photo, setPhoto] = useState(null);
-
+	const [formData, setFormData] = useState({
+		message: '',
+		id: user.sub,
+	});
 	useEffect(() => {
 		fetch(
 			`/api/photo/a-man-sitting-at-a-table-using-a-laptop-computer-RHbaDtQL6qU`
@@ -14,18 +19,43 @@ const GetEstimate = () => {
 				console.error('Error fetching photos:', err)
 			);
 	}, []);
+	const sendEstimate = async (formData) => {
+		await fetch('/api/estimate', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				formData,
+			}),
+		});
+	};
+
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		sendEstimate(formData);
+		alert('Submitted!');
+	};
 
 	return (
 		<Wrapper id="getestimate">
 			<Container>
-				<Form>
+				<Form onSubmit={handleSubmit}>
 					<h2>How can we help?</h2>
 					<label>Whats going on?</label>
-					<textarea></textarea>
-					<label>How can we contact you?</label>
-					<input></input>
-					<label>What is your prefered name?</label>
-					<input></input>
+					<textarea
+						type="text"
+						name="message"
+						value={formData.message}
+						onChange={handleChange}
+					></textarea>
+
+					<button type="submit">SUBMIT</button>
 				</Form>
 				<FormPhoto>
 					{photo && (

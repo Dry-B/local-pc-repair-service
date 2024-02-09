@@ -1,12 +1,8 @@
 import { styled } from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const ReviewForm = (user) => {
-	const [userExists, setUserExists] = useState(false);
-	const [formData, setFormData] = useState({
-		name: '',
-		message: '',
-	});
+const ReviewForm = ({ user }) => {
+	const [formData, setFormData] = useState({});
 
 	const leaveReview = async (formData) => {
 		await fetch('/api/review', {
@@ -18,25 +14,21 @@ const ReviewForm = (user) => {
 		});
 	};
 
-	useEffect(() => {
-		fetch(`/api/review/${user.sub}`)
-			.then((res) => res.json())
-			.then((data) => setUserExists(data))
-			.catch((err) =>
-				console.error('Error fetching reviews:', err)
-			);
-	}, []);
 	const handleChange = (e) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value,
-			['id']: user.sub,
 		});
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setFormData({
+			...formData,
+			user: user.sub,
+		});
 		leaveReview(formData);
+		alert('Submitted!');
 	};
 
 	return (
@@ -44,6 +36,7 @@ const ReviewForm = (user) => {
 			<h2>Leave A Review!</h2>
 			<label>Message:</label>
 			<textarea
+				required
 				type="text"
 				name="message"
 				value={formData.message}
@@ -51,6 +44,7 @@ const ReviewForm = (user) => {
 			></textarea>
 			<label>Name:</label>
 			<input
+				required
 				type="text"
 				name="name"
 				value={formData.name}

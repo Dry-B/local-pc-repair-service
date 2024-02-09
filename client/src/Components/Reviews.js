@@ -3,11 +3,10 @@ import { OtherReview } from './OtherReview';
 import { UpdateReview } from './UpdateReview';
 import { ReviewForm } from './ReviewForm';
 import { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 
-const LeaveReview = () => {
-	const { user, isAuthenticated } = useAuth0();
+const Reviews = ({ user, isAuthenticated }) => {
 	const [reviewData, setReviewData] = useState(null);
+	const [reviewExists, setReviewExists] = useState(null);
 
 	useEffect(() => {
 		fetch(`/api/reviews`)
@@ -16,16 +15,29 @@ const LeaveReview = () => {
 			.catch((err) =>
 				console.error('Error fetching reviews:', err)
 			);
-	}, []);
-	console.log(user);
+		if (user) {
+			fetch(`/api/review/${user.sub}`)
+				.then((res) => res.json())
+				.then((data) => setReviewExists(data))
+				.catch((err) =>
+					console.error(
+						'Error fetching one review:',
+						err
+					)
+				);
+		}
+	}, [user]);
+
 	return (
 		<Wrapper id="leavereview">
 			<Container>
-				{isAuthenticated ? (
-					<ReviewForm user={user} />
-				) : (
-					<>Loading...</>
-				)}
+				{isAuthenticated &&
+					user &&
+					(reviewExists ? (
+						<UpdateReview user={user} />
+					) : (
+						<ReviewForm user={user} />
+					))}
 				<PreviousReviews>
 					Reviews:
 					<ul>
@@ -41,7 +53,6 @@ const LeaveReview = () => {
 							  })}
 					</ul>
 				</PreviousReviews>
-				{isAuthenticated && <UpdateReview />}
 			</Container>
 		</Wrapper>
 	);
@@ -52,6 +63,7 @@ const PreviousReviews = styled.div`
 	height: 40rem;
 	width: 30rem;
 	overflow: auto;
+	margin: 2rem;
 `;
 
 const Container = styled.div`
@@ -72,4 +84,4 @@ const Wrapper = styled.div`
 	align-items: center;
 `;
 
-export { LeaveReview };
+export { Reviews };

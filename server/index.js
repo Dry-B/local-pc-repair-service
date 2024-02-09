@@ -11,6 +11,7 @@ const reCaptcha = require('./handlers/reCaptcha');
 const updateReview = require('./handlers/updateReview');
 const createEstimate = require('./handlers/createEstimate');
 const getReview = require('./handlers/getReview');
+const deleteAllReview = require('./handlers/deleteAllReviews');
 
 express()
 	.use(morgan('tiny'))
@@ -35,7 +36,8 @@ express()
 	.post('/api/recaptcha', reCaptcha)
 	.post('/api/review/update', updateReview)
 	.post('/api/estimate', createEstimate)
-	.get('api/review/:id', getReview)
+	.get('/api/review/:id', getReview)
+	.get('/api/reviews/nukedb', deleteAllReview)
 
 	.get('*', (req, res) => {
 		res.status(404).json({

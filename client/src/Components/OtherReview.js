@@ -2,10 +2,10 @@ import { styled } from 'styled-components';
 
 const OtherReview = ({ reviewData }) => {
 	return (
-		<li key={reviewData[0].Name}>
+		<li key={reviewData.name}>
 			<Wrapper>
-				<p>Name: {reviewData[0].Name}</p>
-				<p>Message: {reviewData[0].Message}</p>
+				<p>Name: {reviewData.name}</p>
+				<p>Message: {reviewData.message}</p>
 			</Wrapper>
 		</li>
 	);

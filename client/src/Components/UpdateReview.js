@@ -1,11 +1,8 @@
 import { styled } from 'styled-components';
 import { useState } from 'react';
 
-const UpdateReview = () => {
-	const [updatedFormData, setUpdatedFormData] = useState({
-		message: '',
-		email: '',
-	});
+const UpdateReview = ({ user }) => {
+	const [updatedFormData, setUpdatedFormData] = useState({});
 
 	const sendUpdatedReview = async (formData) => {
 		await fetch('/api/review/update', {
@@ -18,7 +15,13 @@ const UpdateReview = () => {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		sendUpdatedReview(updatedFormData);
+		setUpdatedFormData({
+			...updatedFormData,
+			user: user.sub,
+		});
+		console.log(updatedFormData);
+		// sendUpdatedReview(updatedFormData);
+		alert('Submitted!');
 	};
 	const handleChange = (e) => {
 		setUpdatedFormData({
@@ -29,22 +32,18 @@ const UpdateReview = () => {
 	return (
 		<ButtonContainer>
 			<Form onSubmit={handleSubmit}>
-				<h2>Edit/Delete Your Review!</h2>
+				<h2>Edit Your Review:</h2>
 				<label>Updated Message:</label>
 				<textarea
+					required
 					type="text"
 					name="message"
 					value={updatedFormData.message}
 					onChange={handleChange}
 				></textarea>
-				<label>Email Used:</label>
-				<input
-					type="email"
-					name="email"
-					value={updatedFormData.email}
-					onChange={handleChange}
-				></input>
+
 				<button type="submit">UPDATE</button>
+				<h2>Delete:</h2>
 				<button type="submit">DELETE</button>
 			</Form>
 		</ButtonContainer>

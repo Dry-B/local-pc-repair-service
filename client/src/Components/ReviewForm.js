@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 import { useState } from 'react';
 
-const ReviewForm = ({ user }) => {
-	const [formData, setFormData] = useState({});
+const ReviewForm = ({ user, handlePageUpdate }) => {
+	const [formData, setFormData] = useState({ user: user.sub });
 
 	const leaveReview = async (formData) => {
-		await fetch('/api/review', {
+		await fetch('/api/review/create', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -25,7 +25,6 @@ const ReviewForm = ({ user }) => {
 		e.preventDefault();
 		setFormData({
 			...formData,
-			user: user.sub,
 		});
 		leaveReview(formData);
 		alert('Submitted!');

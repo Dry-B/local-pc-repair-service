@@ -5,7 +5,7 @@ import { ReviewForm } from './ReviewForm';
 import { useState, useEffect } from 'react';
 
 const Reviews = ({ user, isAuthenticated }) => {
-	const [reviewData, setReviewData] = useState(null);
+	const [reviewData, setReviewData] = useState();
 	const [reviewExists, setReviewExists] = useState(null);
 
 	useEffect(() => {
@@ -15,24 +15,19 @@ const Reviews = ({ user, isAuthenticated }) => {
 			.catch((err) =>
 				console.error('Error fetching reviews:', err)
 			);
-		if (user) {
-			fetch(`/api/review/${user.sub}`)
-				.then((res) => res.json())
-				.then((data) => setReviewExists(data))
-				.catch((err) =>
-					console.error(
-						'Error fetching one review:',
-						err
-					)
-				);
-		}
-	}, [user]);
+
+		fetch(`/api/review/${user.sub}`)
+			.then((res) => res.json())
+			.then((data) => setReviewExists(data.data))
+			.catch((err) =>
+				console.error('Error fetching one review:', err)
+			);
+	}, []);
 
 	return (
 		<Wrapper id="leavereview">
 			<Container>
 				{isAuthenticated &&
-					user &&
 					(reviewExists ? (
 						<UpdateReview user={user} />
 					) : (

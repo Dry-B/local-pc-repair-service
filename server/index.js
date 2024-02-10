@@ -12,6 +12,7 @@ const updateReview = require('./handlers/updateReview');
 const createEstimate = require('./handlers/createEstimate');
 const getReview = require('./handlers/getReview');
 const deleteAllReview = require('./handlers/deleteAllReviews');
+const deleteReview = require('./handlers/deleteReview');
 
 express()
 	.use(morgan('tiny'))
@@ -31,12 +32,13 @@ express()
 
 	.get('/serverping', serverPing)
 	.get('/api/photo/:id', getUnsplashPhoto)
-	.post('/api/review', createReview)
+	.post('/api/review/create', createReview)
 	.get('/api/reviews', getReviews)
 	.post('/api/recaptcha', reCaptcha)
 	.post('/api/review/update', updateReview)
 	.post('/api/estimate', createEstimate)
 	.get('/api/review/:id', getReview)
+	.get('/api/review/delete/:id', deleteReview)
 	.get('/api/reviews/nukedb', deleteAllReview)
 
 	.get('*', (req, res) => {

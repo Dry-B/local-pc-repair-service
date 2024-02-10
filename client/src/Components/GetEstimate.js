@@ -47,7 +47,7 @@ const GetEstimate = () => {
 			<Container>
 				<Form onSubmit={handleSubmit}>
 					<h2>How can we help?</h2>
-					<label>Whats going on?</label>
+					<label>Describe the issue:</label>
 					<textarea
 						type="text"
 						name="message"

@@ -5,8 +5,6 @@ require('dotenv').config();
 const { MONGO_URI } = process.env;
 
 const getReview = async (req, res) => {
-	const userId = req.params.id;
-
 	try {
 		const client = new MongoClient(MONGO_URI);
 		await client.connect();

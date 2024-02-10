@@ -10,7 +10,7 @@ import GlobalStyles from './Components/GlobalStyles';
 import React from 'react';
 
 const App = () => {
-	const { user, isAuthenticated } = useAuth0();
+	const { user, isAuthenticated, isLoading } = useAuth0();
 
 	return (
 		<Router>
@@ -20,10 +20,12 @@ const App = () => {
 			<AuthButton />
 			<LearnMore />
 			{isAuthenticated && <GetEstimate />}
-			<Reviews
-				user={user}
-				isAuthenticated={isAuthenticated}
-			/>
+			{!isLoading && (
+				<Reviews
+					user={user}
+					isAuthenticated={isAuthenticated}
+				/>
+			)}
 		</Router>
 	);
 };

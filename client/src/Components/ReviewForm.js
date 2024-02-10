@@ -28,6 +28,7 @@ const ReviewForm = ({ user, handlePageUpdate }) => {
 		});
 		leaveReview(formData);
 		alert('Submitted!');
+		window.location.reload();
 	};
 
 	return (

@@ -40,6 +40,7 @@ const GetEstimate = () => {
 		e.preventDefault();
 		sendEstimate(formData);
 		alert('Submitted!');
+		window.location.reload();
 	};
 
 	return (

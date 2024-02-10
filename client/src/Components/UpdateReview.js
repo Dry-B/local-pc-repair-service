@@ -34,6 +34,7 @@ const handleSubmit = async (e) => {
 	});
 	sendUpdatedReview(updatedFormData);
 	alert('Submitted!');
+	window.location.reload();
 };
 const handleChange = (e) => {
 	setUpdatedFormData({
